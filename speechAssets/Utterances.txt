@@ -1,0 +1,3 @@
+HelloIntent begrüße
+HelloIntent Begrüße bitte
+HelloIntent Begrüßen
