@@ -1,3 +1,4 @@
 HelloIntent begrüße
+HelloIntent bitte begrüße
 HelloIntent Begrüße bitte
 HelloIntent Begrüßen
