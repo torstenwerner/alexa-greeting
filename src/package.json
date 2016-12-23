@@ -1,27 +1,22 @@
 {
-  "name": "skill-sample-nodejs-hello-world",
+  "name": "alexa-greeting",
   "version": "1.0.0",
-  "description": "Hello world sample skill",
+  "description": "Alexa greeting skill",
   "main": "index.js",
   "scripts": {
-    "build": "rm -f /tmp/alexa.zip; zip -r /tmp/alexa.zip *",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -f /tmp/alexa.zip; zip -r /tmp/alexa.zip *"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexa/skill-sample-nodejs-hello-world.git"
+    "url": "git@github.com:torstenwerner/alexa-greeting.git"
   },
   "keywords": [
-    "helloworld",
     "alexa",
     "skill"
   ],
-  "author": "Amazon.com",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/alexa/skill-sample-nodejs-hello-world/issues"
-  },
-  "homepage": "https://github.com/alexa/skill-sample-nodejs-hello-world#readme",
+  "author": "Torsten Werner",
+  "license": "http://unlicense.org/",
+  "homepage": "https://github.com/torstenwerner/alexa-greeting",
   "dependencies": {
     "alexa-sdk": "^1.0.0"
   }
