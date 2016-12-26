@@ -4,7 +4,9 @@
   "description": "Alexa greeting skill",
   "main": "index.js",
   "scripts": {
-    "build": "rm -f /tmp/alexa.zip; zip -r /tmp/alexa.zip *"
+    "build": "rm -f /tmp/alexa.zip; zip -r /tmp/alexa.zip *",
+    "upload": "aws lambda update-function-code --region eu-west-1 --function-name HalloGast --zip-file fileb:///tmp/alexa.zip",
+    "deploy": "npm run build && npm run upload"
   },
   "repository": {
     "type": "git",
