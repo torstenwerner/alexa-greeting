@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rm -f /tmp/alexa.zip; zip -r /tmp/alexa.zip *.js node_modules/alexa-sdk node_modules/i18next*",
     "upload": "aws lambda update-function-code --region eu-west-1 --function-name HalloGast --zip-file fileb:///tmp/alexa.zip",
-    "deploy": "npm run build && npm run upload"
+    "deploy": "npm run build && npm run upload",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,12 @@
     "skill"
   ],
   "author": "Torsten Werner",
-  "license": "http://unlicense.org/",
+  "license": "Unlicense",
   "homepage": "https://github.com/torstenwerner/alexa-greeting",
   "dependencies": {
     "alexa-sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
   }
 }
