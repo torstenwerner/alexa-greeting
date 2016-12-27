@@ -119,3 +119,76 @@ describe('the HelloIntent', function () {
     });
 
 });
+
+describe('the AMAZON.YesIntent', function () {
+    this.timeout(10000);
+
+    it('should say a longer goodbye', function (done) {
+        const payload = getBasePayload();
+        payload.request.type = 'IntentRequest';
+        payload.request.intent = {
+            name: 'AMAZON.YesIntent'
+        };
+        const params = {
+            FunctionName: 'HalloGast',
+            Payload: JSON.stringify(payload)
+        };
+        lambda.invoke(params, function (err, data) {
+            assert.ifError(err);
+            assert.equal(data.StatusCode, 200);
+            const payload = JSON.parse(data.Payload);
+            assert.equal(payload.response.outputSpeech.type, 'SSML');
+            const outputSsml = payload.response.outputSpeech.ssml;
+            assert(outputSsml.indexOf('rhetorische Frage') >= 0);
+            assert.equal(payload.response.shouldEndSession, true);
+            done();
+        });
+    });
+
+});
+
+describe('the AMAZON.NoIntent', function () {
+    this.timeout(10000);
+
+    it('should say goodbye', function (done) {
+        const payload = getBasePayload();
+        payload.request.type = 'IntentRequest';
+        payload.request.intent = {
+            name: 'AMAZON.YesIntent'
+        };
+        const params = {
+            FunctionName: 'HalloGast',
+            Payload: JSON.stringify(payload)
+        };
+        lambda.invoke(params, function (err, data) {
+            assert.ifError(err);
+            assert.equal(data.StatusCode, 200);
+            const payload = JSON.parse(data.Payload);
+            assert.equal(payload.response.outputSpeech.type, 'SSML');
+            const outputSsml = payload.response.outputSpeech.ssml;
+            assert(outputSsml.indexOf('ein andermal') >= 0);
+            assert.equal(payload.response.shouldEndSession, true);
+            done();
+        });
+    });
+
+});
+
+describe('the SessionEndedRequest', function () {
+    this.timeout(10000);
+
+    it('should be successful', function (done) {
+        const payload = getBasePayload();
+        payload.request.type = 'SessionEndedRequest';
+        const params = {
+            FunctionName: 'HalloGast',
+            Payload: JSON.stringify(payload)
+        };
+        lambda.invoke(params, function (err, data) {
+            assert.ifError(err);
+            assert.equal(data.StatusCode, 200);
+            done();
+        });
+    });
+
+});
