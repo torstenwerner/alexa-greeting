@@ -2,6 +2,7 @@
 
 const AWS = require('aws-sdk');
 const assert = require('assert');
+const config = require('../config');
 
 function getBasePayload() {
     return {
@@ -55,7 +56,7 @@ function launchCheck(err, data) {
     const payload = JSON.parse(data.Payload);
     assert.equal(payload.response.outputSpeech.type, 'SSML');
     const outputSsml = payload.response.outputSpeech.ssml;
-    assert(outputSsml.indexOf('Hochverehrter') >= 0);
+    assert(outputSsml.indexOf(config.greeting) >= 0);
     assert.equal(payload.response.shouldEndSession, false);
     assert(payload.sessionAttributes.asking);
 };
@@ -112,7 +113,7 @@ describe('the HelloIntent', function () {
             const payload = JSON.parse(data.Payload);
             assert.equal(payload.response.outputSpeech.type, 'SSML');
             const outputSsml = payload.response.outputSpeech.ssml;
-            assert(outputSsml.indexOf('ein andermal') >= 0);
+            assert(outputSsml.indexOf(config.noResponse) >= 0);
             assert.equal(payload.response.shouldEndSession, true);
             done();
         });
@@ -139,7 +140,7 @@ describe('the AMAZON.YesIntent', function () {
             const payload = JSON.parse(data.Payload);
             assert.equal(payload.response.outputSpeech.type, 'SSML');
             const outputSsml = payload.response.outputSpeech.ssml;
-            assert(outputSsml.indexOf('rhetorische Frage') >= 0);
+            assert(outputSsml.indexOf(config.yesResponse) >= 0);
             assert.equal(payload.response.shouldEndSession, true);
             done();
         });
@@ -166,7 +167,7 @@ describe('the AMAZON.NoIntent', function () {
             const payload = JSON.parse(data.Payload);
             assert.equal(payload.response.outputSpeech.type, 'SSML');
             const outputSsml = payload.response.outputSpeech.ssml;
-            assert(outputSsml.indexOf('ein andermal') >= 0);
+            assert(outputSsml.indexOf(config.noResponse) >= 0);
             assert.equal(payload.response.shouldEndSession, true);
             done();
         });
