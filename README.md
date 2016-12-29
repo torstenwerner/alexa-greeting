@@ -1,6 +1,7 @@
 # Alexa greeting skill
 
 It greets a guest and asks a rhetorical question. It uses the german language.
+Please watch the video https://www.youtube.com/watch?v=e16ANm6dbIs to get an impression.
 
 - cd src
 - npm install
